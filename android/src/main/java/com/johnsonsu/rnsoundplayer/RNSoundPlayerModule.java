@@ -27,6 +27,7 @@ public class RNSoundPlayerModule extends ReactContextBaseJavaModule {
   public final static String EVENT_FINISHED_LOADING_FILE = "FinishedLoadingFile";
   public final static String EVENT_FINISHED_LOADING_URL = "FinishedLoadingURL";
 
+
   private final ReactApplicationContext reactContext;
   private MediaPlayer mediaPlayer;
   private float volume;
@@ -54,14 +55,22 @@ public class RNSoundPlayerModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void playUrl(String url) throws IOException {
-    prepareUrl(url);
-    this.resume();
+  public void playUrl(String url){
+    try{
+      prepareUrl(url);
+      this.resume();
+    }catch (Exception exception){
+
+    }
   }
 
   @ReactMethod
-  public void loadUrl(String url) throws IOException {
-    prepareUrl(url);
+  public void loadUrl(String url){
+    try{
+      prepareUrl(url);
+    }catch (Exception exception){
+
+    }
   }
 
   @ReactMethod
@@ -102,8 +111,7 @@ public class RNSoundPlayerModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void getInfo(
-      Promise promise) {
+  public void getInfo(Promise promise) {
     if (this.mediaPlayer == null) {
       promise.resolve(null);
       return;
@@ -193,6 +201,7 @@ public class RNSoundPlayerModule extends ReactContextBaseJavaModule {
             params.putBoolean("success", true);
             sendEvent(getReactApplicationContext(), EVENT_FINISHED_PLAYING, params);
           }
+
       });
       this.mediaPlayer.setOnPreparedListener(
         new OnPreparedListener() {
