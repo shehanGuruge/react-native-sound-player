@@ -1,6 +1,7 @@
 # react-native-sound-player
 
 Play audio files, stream audio from URL, using ReactNative.
+This is an extension of the fully functional amazing library react-native-sound-player. This is a library just to enhance the functionality for my internal use case. 
 
 ## Installation
 
